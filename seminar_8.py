@@ -73,6 +73,8 @@ def search_data(contacts: List[str]):
     for contact in contacts:
         if search_str.lower() in contact.split(', ')[1].lower():
             founded.append(contact)
+        if founded == " ":
+            break
     return founded
 
 def delete_data(file_list, founded_data):
@@ -80,13 +82,11 @@ def delete_data(file_list, founded_data):
     choice = int(input("Введите цифру для действия: 1 - удалить, 2 - изменить: "))
     if choice == 2:
         print("Выберете данные для изменения")
-    for i in founded_data:
-        print(count, i)
+    for idx, line in enumerate(founded_data):
+        print(idx+1, line)
         count+=1
     k = int(input("Выберите номер элемента для изменения"))
-    file_list.pop(file_list.index(founded_data[k - 1]))
-    with open("phone_book.txt", "w", encoding="utf-8") as f:
-        f.writelines(file_list)
+    founded_data[k-1] = input("Введите новые данные: \n")
     print("Запись была удалена")
     if choice == 2:
         print("выберите данные для удаления")

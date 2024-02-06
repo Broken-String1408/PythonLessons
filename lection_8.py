@@ -48,7 +48,10 @@ def search_data(contacts: List[str]):
     for contact in contacts:
         if search_str.lower() in contact.split(', ')[1].lower():
             founded.append(contact)
-    return founded
+    if founded[0] == "":
+        return print("Данных нет!")
+    else:
+        return founded
 
 def delete_data(file_list, founded_data):
     count = 1
